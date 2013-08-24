@@ -1,0 +1,91 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+@import "susy";
+
+// -------------------------------------------------------------------------
+// Layout
+
+$total-columns: 12;
+$column-width: 5em;
+$gutter-width: 0.5em;
+
+// -------------------------------------------------------------------------
+// Breakpoints
+$iPad: 28.125em;
+$desktop: 50em;
+
+body {
+  background: black;
+}
+
+.content {
+  @include container;
+//   @include susy-grid-background;
+  height: 100%;
+  img {
+    width: 100%;
+  }
+  background: rgba(10,10,10, 0.9);
+  header {
+    background: black;
+    @include span-columns(12, 12);
+    text-align: center;
+    height: 3em;
+    line-height: 3em;
+    font-size: 1.5em;
+    color: white;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 100;
+  }
+  ul {
+    position: relative;
+    top: 4.5em;
+  }
+}
+
+.gallery_image {
+  position: relative;
+  margin-bottom: 0.5em;
+  @include span-columns(12, 12);
+  @include at-breakpoint($iPad) {
+    @include span-columns(6, 12);
+    &:nth-child(2n-1) {
+      @include span-columns(6 omega, 12);
+    }
+  }
+  img {
+    vertical-align: bottom;
+  }
+  .img_info {
+    position: absolute;
+    bottom: 0;
+    height: 1.5em;
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+    visibility: hidden;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    font-family: helvetica, sans;
+  }
+  &:hover .img_info {
+    visibility: visible;
+  }
+}
+
+.content .gallery_image {
+  @include at-breakpoint($desktop) {
+    @include span-columns(4, 12);
+    &:nth-child(3n-1) {
+      @include span-columns(4 omega, 12);
+    } 
+  }
+}
+
